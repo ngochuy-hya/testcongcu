@@ -1,0 +1,29 @@
+name: CI for Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main  # Workflow này sẽ chạy khi có pull request vào nhánh 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Bạn có thể chọn các hệ điều hành khác nếu cần (windows-latest, macos-latest)
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Kiểm tra mã nguồn từ repository
+
+      - name: Set Git identity
+        run: |
+          git config --global user.email "nguyenhuypm1@gmail.comcom"
+          git config --global user.name "ngochuy-hya"
+
+      - name: Run custom command (ví dụ chạy kiểm tra hoặc lệnh tùy chỉnh)
+        run: |
+          echo "Running custom checks or tests"
+          # Nếu bạn có các bài kiểm tra hoặc lệnh tùy chỉnh, thay lệnh này bằng lệnh thực tế của bạn
+          # Ví dụ: ./run-tests.sh
+
+      - name: Post something (optional)
+        run: |
+          echo "CI for Pull Request is complete"
